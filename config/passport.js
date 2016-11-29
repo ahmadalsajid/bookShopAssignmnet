@@ -7,15 +7,16 @@ module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
         done(null, user);
+        console.log(user);
     });
 
     passport.deserializeUser(function(user, done) {
-        if (user.roll==='reader') {
-            Reader.findById(user._id, function(err, user) {
+        if (user.roll==='publisher') {
+            Publisher.findById(user._id, function(err, user) {
                 done(err, user);
             });
         } else {
-            Publisher.findById(user._id, function(err, user) {
+            Reader.findById(user._id, function(err, user) {
                 done(err, user);
             });
         }
@@ -50,7 +51,6 @@ module.exports = function(passport) {
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
-                        //console.log(req);
                         var newReader = new Reader();
                         //newReader._id = new mongoose.Schema.ObjectId;
                         newReader.name =req.body.name,

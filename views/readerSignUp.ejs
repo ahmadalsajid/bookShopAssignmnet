@@ -15,7 +15,7 @@
           <div class="alert-danger"><%= message %></div>
           <% } %>
 
-          <form action="/readerSignUp" method="post">
+          <form action="/readerSignUp" method="post" enctype="multipart/form-data" >
               <div class="form-group">
                   <label>Name</label>
                   <input type="text" class="form-control" name="name">
