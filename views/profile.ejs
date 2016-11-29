@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partials/head.ejs%>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+    <a href="/logout">logout</a>
+    <% console.log(user)%>
+    <% if (user.roll==='reader') { %>
+    <% include partials/readerProfile.ejs%>
+    <% }  else { %>
+    <% include partials/publisherProfile.ejs%>
+    <% } %>
+    <p><%= user.name%></p>
+    <p><%= user._id%></p>
+    <p><%= user.roll %></p>
+<%include partials/scripts.ejs%>
+</body>
+</html>
