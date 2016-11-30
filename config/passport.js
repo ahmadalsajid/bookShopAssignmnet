@@ -7,7 +7,6 @@ module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
         done(null, user);
-        console.log(user);
     });
 
     passport.deserializeUser(function(user, done) {
@@ -46,13 +45,15 @@ module.exports = function(passport) {
 
             process.nextTick(function() {
                 Reader.findOne({ 'email':  email }, function(err, user) {
+
+
                     if (err)
                         return done(err);
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
+                        console.log(req.files);
                         var newReader = new Reader();
-                        //newReader._id = new mongoose.Schema.ObjectId;
                         newReader.name =req.body.name,
                         newReader.password = newReader.generateHash(password);
                         newReader.email = email;
